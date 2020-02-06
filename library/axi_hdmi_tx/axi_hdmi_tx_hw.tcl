@@ -54,12 +54,12 @@ set_parameter_property CR_CB_N TYPE INTEGER
 set_parameter_property CR_CB_N UNITS None
 set_parameter_property CR_CB_N HDL_PARAMETER true
 
-add_parameter FPGA_TECHNOLOGY INTEGER 0
-set_parameter_property FPGA_TECHNOLOGY DEFAULT_VALUE 16
-set_parameter_property FPGA_TECHNOLOGY DISPLAY_NAME FPGA_TECHNOLOGY
-set_parameter_property FPGA_TECHNOLOGY TYPE INTEGER
-set_parameter_property FPGA_TECHNOLOGY UNITS None
-set_parameter_property FPGA_TECHNOLOGY HDL_PARAMETER true
+#add_parameter FPGA_TECHNOLOGY INTEGER 0
+#set_parameter_property FPGA_TECHNOLOGY DEFAULT_VALUE 16
+#set_parameter_property FPGA_TECHNOLOGY DISPLAY_NAME FPGA_TECHNOLOGY
+#set_parameter_property FPGA_TECHNOLOGY TYPE INTEGER
+#set_parameter_property FPGA_TECHNOLOGY UNITS None
+#set_parameter_property FPGA_TECHNOLOGY HDL_PARAMETER true
 
 add_parameter EMBEDDED_SYNC INTEGER 0
 set_parameter_property EMBEDDED_SYNC DEFAULT_VALUE 0
@@ -101,11 +101,12 @@ add_interface_port hdmi_if hdmi_36_data h36_data Output 36
 add_interface vdma_clock  clock end
 add_interface_port vdma_clock vdma_clk clk Input 1
 
-add_interface vdma_if avalon_streaming end
+# sjk add_interface vdma_if avalon_streaming end
+add_interface vdma_if axi4stream end
 set_interface_property vdma_if associatedClock vdma_clock
-add_interface_port vdma_if vdma_valid valid Input 1
-add_interface_port vdma_if vdma_data data Input 64
-add_interface_port vdma_if vdma_ready ready Output 1
+add_interface_port vdma_if vdma_valid tvalid Input 1
+add_interface_port vdma_if vdma_data tdata Input 64
+add_interface_port vdma_if vdma_ready tready Output 1
 
 # frame sync
 
